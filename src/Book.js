@@ -8,25 +8,30 @@ class Book extends Component {
     updateBookList: PropTypes.func.isRequired
   };
   render() {
+    const { book, updateBookList } = this.props;
     return (
       <div className="book">
         <div className="book-top">
+          {!(typeof book.imageLinks === "undefined") &&
           <div
             className="book-cover"
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${this.props.book.imageLinks.thumbnail})`
+              backgroundImage: `url(${book.imageLinks.thumbnail})`
             }}
           />
+          }
           <BookShelfChanger 
-            book={this.props.book}
-            selectedShelf={this.props.book.shelf}
-            updateBookList={this.props.updateBookList}
+            book={book}
+            selectedShelf={book.shelf}
+            updateBookList={updateBookList}
           />
         </div>
-        <div className="book-title">{this.props.book.title}</div>
-        <div className="book-authors">{this.props.book.authors.join(', ')}</div>
+        <div className="book-title">{book.title}</div>
+        {!(typeof book.authors === "undefined") &&
+        <div className="book-authors">{book.authors.join(', ')}</div>
+        }
       </div>
     );
   }

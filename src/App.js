@@ -9,9 +9,9 @@ class BooksApp extends Component {
   state = {
     books: [],
     shelfList: [
-      {Name:'Currently Reading', Id: "currentlyReading"}, 
-      {Name: 'Want to Read', Id: "wantToRead"},
-      {Name: 'Read', Id: "read"}
+      { Name: 'Currently Reading', Id: 'currentlyReading' },
+      { Name: 'Want to Read', Id: 'wantToRead' },
+      { Name: 'Read', Id: 'read' }
     ]
   };
 
@@ -34,7 +34,15 @@ class BooksApp extends Component {
   render() {
     return (
       <div className="app">
-        <Route exact path="/search" render={() => <SearchBooks />} />
+        <Route
+          exact
+          path="/search"
+          render={() => (
+            <SearchBooks
+              updateBookList={this.updateBookList}
+            />
+          )}
+        />
         <Route
           exact
           path="/"
