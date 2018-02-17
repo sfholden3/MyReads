@@ -10,7 +10,6 @@ class BookList extends Component {
     updateBookList: PropTypes.func.isRequired
   };
 
-
   render() {
     return (
       <div className="list-books">

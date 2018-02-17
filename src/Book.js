@@ -12,26 +12,20 @@ class Book extends Component {
     return (
       <div className="book">
         <div className="book-top">
-          {!(typeof book.imageLinks === "undefined") &&
-          <div
-            className="book-cover"
-            style={{
-              width: 128,
-              height: 193,
-              backgroundImage: `url(${book.imageLinks.thumbnail})`
-            }}
-          />
-          }
-          <BookShelfChanger 
-            book={book}
-            selectedShelf={book.shelf}
-            updateBookList={updateBookList}
-          />
+          {!(typeof book.imageLinks === 'undefined') && (
+            <div
+              className="book-cover"
+              style={{
+                width: 128,
+                height: 193,
+                backgroundImage: `url(${book.imageLinks.thumbnail})`
+              }}
+            />
+          )}
+          <BookShelfChanger book={book} selectedShelf={book.shelf} updateBookList={updateBookList} />
         </div>
         <div className="book-title">{book.title}</div>
-        {!(typeof book.authors === "undefined") &&
-        <div className="book-authors">{book.authors.join(', ')}</div>
-        }
+        {!(typeof book.authors === 'undefined') && <div className="book-authors">{book.authors.join(', ')}</div>}
       </div>
     );
   }

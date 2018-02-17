@@ -10,7 +10,10 @@ class BookShelfChanger extends Component {
   render() {
     return (
       <div className="book-shelf-changer">
-        <select id="bookStatus" value={this.props.book.shelf || "none2"} onChange={event => this.props.updateBookList(this.props.book, event)}>
+        <select
+          id="bookStatus"
+          value={this.props.book.shelf || 'none2'}
+          onChange={event => this.props.updateBookList(this.props.book, event)}>
           <option value="none" disabled>
             Move to...
           </option>

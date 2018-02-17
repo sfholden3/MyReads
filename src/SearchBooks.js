@@ -38,21 +38,19 @@ class SearchBooks extends Component {
             />
           </div>
         </div>
-        {(searchedBooks !== null) &&
-        <div className="search-books-results">
-          <ol className="books-grid">            
+        {searchedBooks !== null && (
+          <div className="search-books-results">
+            <ol className="books-grid">
               {searchedBooks.map(b => (
                 <li key={b.id}>
                   <Book key={b.id} book={b} updateBookList={updateBookList} />
                 </li>
-              ))
-              }
-          </ol>
-          
-        </div>
-        }
+              ))}
+            </ol>
+          </div>
+        )}
       </div>
-    )
+    );
   }
 }
 
