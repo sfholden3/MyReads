@@ -2,23 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Bookshelf from './Bookshelf.js';
+import * as BooksAPI from './BooksAPI';
 
 class BookList extends Component {
   static propTypes = {
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    shelfList: PropTypes.array.isRequired,
+    updateBookList: PropTypes.func.isRequired
   };
-  state = {
-    currentlyReading: [],
-    wantToRead: [],
-    read: []
-  };
-  componentWillReceiveProps(props) {
-    this.setState({
-      currentlyReading: props.books.filter(cr => cr.shelf == 'currentlyReading'),
-      wantToRead: props.books.filter(cr => cr.shelf == 'wantToRead'),
-      read: props.books.filter(cr => cr.shelf == 'read')
-    });
-  }
+
 
   render() {
     return (
@@ -28,9 +20,14 @@ class BookList extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <Bookshelf shelfBookList={this.state.currentlyReading} shelfName="Currently Reading" />
-            <Bookshelf shelfBookList={this.state.wantToRead} shelfName="Want to Read" />
-            <Bookshelf shelfBookList={this.state.read} shelfName="Read" />
+            {this.props.shelfList.map(shelf => (
+              <Bookshelf
+                key={shelf.Id}
+                shelfBookList={this.props.books.filter(cr => cr.shelf === shelf.Id)}
+                shelfName={shelf.Name}
+                updateBookList={this.props.updateBookList}
+              />
+            ))}
           </div>
         </div>
         <div className="open-search">
