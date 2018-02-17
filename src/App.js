@@ -3,8 +3,8 @@ import * as BooksAPI from './BooksAPI';
 import './App.css';
 import SearchBooks from './SearchBooks.js';
 import BookList from './BookList.js';
-import { Route, Link } from 'react-router-dom';
-let books;
+import { Route } from 'react-router-dom';
+
 class BooksApp extends Component {
   state = {
     books: [],
