@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Book from './Book.js';
 import * as BooksAPI from './BooksAPI';
+import _ from 'lodash';
 
 class SearchBooks extends Component {
   static propTypes = {
+    books: PropTypes.array.isRequired,
     updateBookList: PropTypes.func.isRequired
   };
   state = {
@@ -13,7 +15,11 @@ class SearchBooks extends Component {
   };
   getSearchedBooks = query => {
     BooksAPI.search(query).then(searchedBooks => {
-      this.setState({ searchedBooks });
+      this.setState({
+        searchedBooks: searchedBooks.map(book => 
+          Object.assign({}, book, this.props.books.filter(b => b.id === book.id)[0]))
+        
+      });
     });
   };
   updateQuery = query => {

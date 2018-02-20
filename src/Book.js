@@ -12,16 +12,14 @@ class Book extends Component {
     return (
       <div className="book">
         <div className="book-top">
-          {!(typeof book.imageLinks === 'undefined') && (
             <div
               className="book-cover"
               style={{
                 width: 128,
                 height: 193,
-                backgroundImage: `url(${book.imageLinks.thumbnail})`
+                backgroundImage:`url(${book.imageLinks && book.imageLinks.thumbnail?`${book.imageLinks.thumbnail}`:`http://via.placeholder.com/128x193?text=No%20Cover`})`
               }}
             />
-          )}
           <BookShelfChanger book={book} selectedShelf={book.shelf} updateBookList={updateBookList} />
         </div>
         <div className="book-title">{book.title}</div>
