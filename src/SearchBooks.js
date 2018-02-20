@@ -14,11 +14,12 @@ class SearchBooks extends Component {
     searchedBooks: []
   };
   getSearchedBooks = query => {
-    BooksAPI.search(query).then(searchedBooks => {
+    let searchResults = BooksAPI.search(query);
+    searchResults.then(searchedBooks => {
       this.setState({
-        searchedBooks: searchedBooks.map(book => 
+        searchedBooks: searchedBooks.length > 0 ? searchedBooks.map(book => 
           Object.assign({}, book, this.props.books.filter(b => b.id === book.id)[0]))
-        
+          : searchedBooks.items
       });
     });
   };
